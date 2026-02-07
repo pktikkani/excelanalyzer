@@ -73,7 +73,7 @@ class CLIExcelAnalyzer:
         df = self.dataframes[filename][sheet_name]
         print(f"\n  Sheet: {sheet_name} (from {filename})")
         print(f"  Shape: {df.shape[0]} rows × {df.shape[1]} columns")
-        print(f"  Columns: {', '.join(df.columns.tolist())}")
+        print(f"  Columns: {', '.join(str(c) for c in df.columns.tolist())}")
         print(f"  Data Types:")
         for col in df.columns:
             print(f"    - {col}: {df[col].dtype}")
@@ -157,7 +157,9 @@ class CLIExcelAnalyzer:
         df = self.dataframes[filename][sheet_name]
         if column not in df.columns:
             print(f"  Column '{column}' not found in sheet '{sheet_name}'.")
-            print(f"  Available columns: {', '.join(df.columns.tolist())}")
+            print(
+                f"  Available columns: {', '.join(str(c) for c in df.columns.tolist())}"
+            )
             return
 
         unique_vals = df[column].unique()
@@ -179,7 +181,9 @@ class CLIExcelAnalyzer:
         df = self.dataframes[filename][sheet_name]
         if column not in df.columns:
             print(f"  Column '{column}' not found in sheet '{sheet_name}'.")
-            print(f"  Available columns: {', '.join(df.columns.tolist())}")
+            print(
+                f"  Available columns: {', '.join(str(c) for c in df.columns.tolist())}"
+            )
             return
 
         counts = df[column].value_counts()
@@ -230,7 +234,9 @@ class CLIExcelAnalyzer:
         df = self.dataframes[filename][sheet_name]
         if column not in df.columns:
             print(f"  Column '{column}' not found.")
-            print(f"  Available columns: {', '.join(df.columns.tolist())}")
+            print(
+                f"  Available columns: {', '.join(str(c) for c in df.columns.tolist())}"
+            )
             return
 
         try:

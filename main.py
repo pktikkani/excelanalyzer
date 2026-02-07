@@ -64,7 +64,7 @@ class ExcelAnalyzer:
         info = f"""
         📈 **Sheet: {sheet_name} (from {filename})**
         - Shape: {df.shape[0]} rows × {df.shape[1]} columns
-        - Columns: {", ".join(df.columns.tolist())}
+        - Columns: {", ".join(str(c) for c in df.columns.tolist())}
         - Data Types: {dict(df.dtypes)}
         - Memory Usage: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB
         """
@@ -127,7 +127,7 @@ class ExcelAnalyzer:
         for filename, sheets in self.dataframes.items():
             result += f"**{filename}:**\n"
             for sheet_name, df in sheets.items():
-                result += f"  - **{sheet_name}**: {', '.join(df.columns.tolist())}\n"
+                result += f"  - **{sheet_name}**: {', '.join(str(c) for c in df.columns.tolist())}\n"
             result += "\n"
         return result
 
